@@ -1,22 +1,29 @@
 package com.mxs.banker.model;
 
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
 import java.util.Date;
 
-@Entity
+@Entity(name = "resource_matrix")
 public class ResourceMatrix {
     @Id
     private Long id;// ID
-
+    @Column(name = "n", nullable = false)
     private Integer n;// N processes
+    @Column(name = "m", nullable = false)
     private Integer m;// M kinds resources
+    @Column(name = "available", nullable = false)
     private String available;
+    @Column(name = "max", nullable = false)
     private String max;
+    @Column(name = "allocation", nullable = false)
     private String allocation;
+    @Column(name = "need", nullable = false)
     private String need;
+    @Column(name = "time_stamp", nullable = false)
     private Date timeStamp;
 
     public ResourceMatrix() {

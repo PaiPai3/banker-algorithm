@@ -15,8 +15,9 @@ public class ResourceMatrixService {
     @Autowired
     private ResourceMatrixRepository resourceMatrixRepository;
 
-    public ResourceMatrix randomGenerateResourceMatrix() { // TODO 改为随机
-        ResourceMatrix resourceMatrix = new ResourceMatrix();
+    public ResourceMatrix randomGenerateResourceMatrix(Integer n, Integer m) { // TODO 改为随机
+        ResourceMatrix resourceMatrix = new ResourceMatrix(n,m);
+        resourceMatrix.setId(resourceMatrixRepository.count() + 1L);
         resourceMatrix.setN(5);
         resourceMatrix.setM(3);
         resourceMatrix.setAvailable("3,3,2");
@@ -24,7 +25,7 @@ public class ResourceMatrixService {
         resourceMatrix.setAllocation("0,1,0;2,0,0;3,0,2;2,1,1;0,0,2");
         resourceMatrix.setNeed("7,4,3;1,2,2;6,0,0;0,1,1;4,3,1");
         resourceMatrix.setTimeStamp(new Date());
-//        resourceMatrixRepository.save(resourceMatrix);
+        resourceMatrixRepository.save(resourceMatrix);
         return resourceMatrix;
     }
 

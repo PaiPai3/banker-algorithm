@@ -3,10 +3,7 @@ package com.mxs.banker.controller;
 import com.mxs.banker.model.ResourceMatrix;
 import com.mxs.banker.service.ResourceMatrixService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
@@ -25,8 +22,8 @@ public class ResourceMatrixController {
     }
 
     @GetMapping("/random-generate")
-    public ResourceMatrix randomGenerateResourceMatrix() {
-        return resourceMatrixService.randomGenerateResourceMatrix();//生成随机资源矩阵
+    public ResourceMatrix randomGenerateResourceMatrix(@RequestParam(defaultValue = "5") Integer n, @RequestParam(defaultValue = "3") Integer m) {
+        return resourceMatrixService.randomGenerateResourceMatrix(n,m);//生成随机资源矩阵
     }
 
     @GetMapping("/dispatch")
@@ -34,5 +31,9 @@ public class ResourceMatrixController {
         return resourceMatrixService.dispatch(resourceMatrix);
     }
 
+    @PostMapping("/save")
+    public ResourceMatrix saveResourceMatrix(@RequestBody ResourceMatrix resourceMatrix) {
+        return resourceMatrixService.saveResourceMatrix(resourceMatrix);
+    }
 
 }
